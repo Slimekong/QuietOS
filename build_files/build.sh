@@ -2,7 +2,8 @@
 
 set -ouex pipefail
 
-rm -f /root/.bash_logout /root/.bash_profile /root/.bashrc || true
+rm -rf /root
+mkdir -p /root
 
 ### Install packages
 
@@ -13,7 +14,13 @@ rm -f /root/.bash_logout /root/.bash_profile /root/.bashrc || true
 
 # this installs a package from fedora repos
 dnf5 install -y \
-        @kde-desktop-environment
+    plasma-desktop \
+    kde-settings \
+    sddm \
+    dolphin \
+    konsole \
+    firefox \
+    NetworkManager
 
 # Use a COPR Example:
 #
@@ -21,7 +28,7 @@ dnf5 install -y \
 # dnf5 -y install package
 # Disable COPRs so they don't end up enabled on the final image:
 # dnf5 -y copr disable ublue-os/staging
-
+dnf5 clean all
 #### Example for enabling a System Unit File
 
 systemctl enable podman.socket
