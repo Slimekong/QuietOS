@@ -1,3 +1,6 @@
+# Caution
+EXTREME work in progress. I have no idea what i am dong, i just have an idea for this. At a later time i will edit this readme file and everything and will make my idea public. till then just ignore this project.
+
 # image-template
 
 This repository is meant to be a template for building your own custom [bootc](https://github.com/bootc-dev/bootc) image. This template is the recommended way to make customizations to any image published by the Universal Blue Project.
