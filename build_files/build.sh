@@ -14,8 +14,8 @@ mkdir -p /root
 
 # this installs a package from fedora repos
 dnf5 install -y \
-    plasma-desktop \
-    kde-settings \
+    plasma-workspace \
+    kde-cli-tools \
     sddm \
     dolphin \
     konsole \
@@ -31,4 +31,5 @@ dnf5 install -y \
 dnf5 clean all
 #### Example for enabling a System Unit File
 
-systemctl enable podman.socket
+systemctl enable podman.socket || true
+systemctl enable sddm
