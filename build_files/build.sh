@@ -2,9 +2,6 @@
 
 set -ouex pipefail
 
-rm -rf /root
-mkdir -p /root
-
 ### Install packages
 
 # Packages can be installed from any enabled yum repo on the image.
@@ -13,15 +10,14 @@ mkdir -p /root
 # https://mirrors.rpmfusion.org/mirrorlist?path=free/fedora/updates/43/x86_64/repoview/index.html&protocol=https&redirect=1
 
 # this installs a package from fedora repos
-dnf5 install -y \
-    plasma-workspace \
-    kde-cli-tools \
-    sddm \
-    dolphin \
-    konsole \
-    firefox \
-    NetworkManager
+dnf5 group install -y "KDE Plasma Workspaces"
 
+
+dnf5 install -y \
+    firefox \
+    konsole \
+    dolphin \
+    NetworkManager
 # Use a COPR Example:
 #
 # dnf5 -y copr enable ublue-os/staging
@@ -31,5 +27,9 @@ dnf5 install -y \
 dnf5 clean all
 #### Example for enabling a System Unit File
 
-systemctl enable podman.socket || true
-systemctl enable sddm
+ln -s /usr/lib/systemd/system/sddm.service \
+/etc/systemd/system/display-manager.service
+
+systemctl enable NetworkManager.service
+
+ln -sf /usr/lib/systemd/system/graphical.target /etc/systemd/system/default.target
